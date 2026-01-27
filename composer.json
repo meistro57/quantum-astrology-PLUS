@@ -1,0 +1,113 @@
+{
+    "name": "quantummindsunited/quantum-astrology-plus",
+    "type": "project",
+    "description": "Quantum Astrology PLUS - A comprehensive metaphysical toolkit featuring Astrology, Numerology, and Card Systems powered by Quantum Minds United",
+    "keywords": ["laravel", "astrology", "numerology", "tarot", "cards", "metaphysical", "consciousness"],
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Mark Jasinski",
+            "email": "mark@quantummindsunited.com",
+            "homepage": "https://quantummindsunited.com"
+        }
+    ],
+    "homepage": "https://github.com/meistro57/quantum-astrology-PLUS",
+    "require": {
+        "php": "^8.4",
+        "laravel/framework": "^12.0",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^2.10",
+        "inertiajs/inertia-laravel": "^2.0",
+        "tightenco/ziggy": "^2.4",
+        "spatie/laravel-data": "^4.12",
+        "spatie/laravel-query-builder": "^6.3"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.24",
+        "laravel/breeze": "^2.3",
+        "laravel/pint": "^1.18",
+        "laravel/sail": "^1.38",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.5",
+        "pestphp/pest": "^3.7",
+        "pestphp/pest-plugin-laravel": "^3.1",
+        "phpstan/phpstan": "^2.1",
+        "rector/rector": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
+        ],
+        "lint": [
+            "./vendor/bin/rector process",
+            "./vendor/bin/pint",
+            "npm run format"
+        ],
+        "test:lint": [
+            "./vendor/bin/rector process --dry-run",
+            "./vendor/bin/pint --test",
+            "npm run format:check"
+        ],
+        "test:types": "./vendor/bin/phpstan analyse --memory-limit=512M",
+        "test:type-coverage": "./vendor/bin/pest --type-coverage --min=100",
+        "test:unit": "./vendor/bin/pest --parallel --coverage --min=100",
+        "test": [
+            "@test:type-coverage",
+            "@test:unit",
+            "@test:lint",
+            "@test:types"
+        ],
+        "setup": [
+            "composer install",
+            "npm install",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php artisan key:generate --ansi",
+            "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
+            "@php artisan migrate --graceful --ansi"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
