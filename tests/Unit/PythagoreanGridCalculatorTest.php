@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\Services\PythagoreanGridCalculator;
+use App\Modules\Numerology\Services\PythagoreanGridCalculator;
 use PHPUnit\Framework\TestCase;
 
 final class PythagoreanGridCalculatorTest extends TestCase
@@ -19,40 +19,23 @@ final class PythagoreanGridCalculatorTest extends TestCase
 
     public function testGridCalculation(): void
     {
-        $birthdate = '1990-06-15';
-        $gridResult = $this->calculator->calculateGrid($birthdate);
+        $grid = $this->calculator->calculateGrid('1990-06-15');
 
-        $this->assertArrayHasKey('grid_numbers', $gridResult);
-        $this->assertArrayHasKey('grid_arrows', $gridResult);
-        $this->assertCount(9, $gridResult['grid_numbers']);
-        $this->assertIsArray($gridResult['grid_arrows']);
+        $this->assertSame([
+            'grid_numbers' => [2, 0, 0, 0, 1, 1, 0, 0, 2],
+            'grid_arrows' => ['Top-Left to Bottom-Right Diagonal'],
+        ], $grid);
     }
 
-    public function testArrowDetection(): void
+    public function testGridInterpretations(): void
     {
-        $testCases = [
-            '1990-06-15' => ['grid_numbers' => [1,1,1,1,1,1,1,1,1]],
-            '2000-01-01' => ['grid_numbers' => [1,1,1,0,0,0,0,0,0]]
-        ];
-
-        foreach ($testCases as $birthdate => $gridData) {
-            $interpretations = $this->calculator->interpretGrid($gridData);
-            $this->assertIsArray($interpretations);
-        }
-    }
-
-    public function testGridInterpretation(): void
-    {
-        $gridData = [
-            'grid_numbers' => [1,2,3,0,0,0,0,0,0],
-            'grid_arrows' => ['Top Row']
-        ];
-
-        $interpretations = $this->calculator->interpretGrid($gridData);
+        $grid = $this->calculator->calculateGrid('1990-06-15');
+        $interpretations = $this->calculator->interpretGrid($grid);
 
         $this->assertArrayHasKey('number_1', $interpretations);
-        $this->assertArrayHasKey('number_2', $interpretations);
-        $this->assertArrayHasKey('number_3', $interpretations);
-        $this->assertArrayHasKey('arrow_top_row', $interpretations);
+        $this->assertArrayHasKey('number_5', $interpretations);
+        $this->assertArrayHasKey('number_6', $interpretations);
+        $this->assertArrayHasKey('number_9', $interpretations);
+        $this->assertArrayHasKey('arrow_top-left_to_bottom-right_diagonal', $interpretations);
     }
 }

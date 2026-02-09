@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\Numerology;
+namespace App\Modules\Numerology\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

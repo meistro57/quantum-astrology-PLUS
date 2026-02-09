@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Modules\Numerology\Services;
 
 final class PythagoreanGridCalculator
 {

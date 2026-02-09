@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Support\ModuleIntegration;
+namespace App\Modules\Numerology\Support\ModuleIntegration;
 
-use App\DTOs\Numerology\NumerologyProfileData;
+use App\Modules\Numerology\DTOs\NumerologyProfileData;
 use App\Models\NumerologyProfile;
-use App\Services\NumerologyCalculator;
-use App\Services\PersonalCyclesCalculator;
+use App\Modules\Numerology\Services\NumerologyCalculator;
+use App\Modules\Numerology\Services\PersonalCyclesCalculator;
 use Carbon\CarbonImmutable;
 
 final class NumerologyIntegrator

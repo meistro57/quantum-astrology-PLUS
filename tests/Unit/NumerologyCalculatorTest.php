@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\Services\NumerologyCalculator;
+use App\Modules\Numerology\Services\NumerologyCalculator;
 use Carbon\CarbonImmutable;
 use PHPUnit\Framework\TestCase;
 
@@ -29,21 +29,21 @@ final class NumerologyCalculatorTest extends TestCase
     {
         $fullName = "John Albert Doe";
         $expressionNumber = $this->calculator->calculateExpression($fullName);
-        $this->assertIsInt($expressionNumber);
+        $this->assertEquals(3, $expressionNumber);
     }
 
     public function testHeartsDesire(): void
     {
         $fullName = "John Albert Doe";
         $heartsDesire = $this->calculator->calculateHeartsDesire($fullName);
-        $this->assertIsInt($heartsDesire);
+        $this->assertEquals(5, $heartsDesire);
     }
 
     public function testPersonalityNumber(): void
     {
         $fullName = "John Albert Doe";
         $personalityNumber = $this->calculator->calculatePersonality($fullName);
-        $this->assertIsInt($personalityNumber);
+        $this->assertEquals(7, $personalityNumber);
     }
 
     public function testBirthdayNumber(): void
@@ -66,9 +66,11 @@ final class NumerologyCalculatorTest extends TestCase
         $birthDate = CarbonImmutable::create(1990, 6, 15);
         $pinnacles = $this->calculator->calculatePinnacles($birthDate);
         
-        $this->assertArrayHasKey('first', $pinnacles);
-        $this->assertArrayHasKey('second', $pinnacles);
-        $this->assertArrayHasKey('third', $pinnacles);
-        $this->assertArrayHasKey('fourth', $pinnacles);
+        $this->assertSame([
+            'first' => 3,
+            'second' => 7,
+            'third' => 1,
+            'fourth' => 7,
+        ], $pinnacles);
     }
 }

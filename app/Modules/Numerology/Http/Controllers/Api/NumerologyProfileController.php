@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Api\Numerology;
+namespace App\Modules\Numerology\Http\Controllers\Api;
 
-use App\Actions\Numerology\CreateNumerologyProfileAction;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Numerology\CreateNumerologyProfileRequest;
-use App\Http\Resources\NumerologyProfileResource;
 use App\Models\NumerologyProfile;
-use App\Services\PersonalCyclesCalculator;
+use App\Modules\Numerology\Actions\CreateNumerologyProfileAction;
+use App\Modules\Numerology\Http\Requests\CreateNumerologyProfileRequest;
+use App\Modules\Numerology\Http\Resources\NumerologyProfileResource;
+use App\Modules\Numerology\Services\PersonalCyclesCalculator;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;

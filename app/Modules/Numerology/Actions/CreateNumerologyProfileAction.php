@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\Numerology;
+namespace App\Modules\Numerology\Actions;
 
-use App\DTOs\Numerology\NumerologyProfileData;
+use App\Modules\Numerology\DTOs\NumerologyProfileData;
 use App\Models\User;
-use App\Services\NumerologyCalculator;
-use App\Services\PythagoreanGridCalculator;
+use App\Modules\Numerology\Services\NumerologyCalculator;
+use App\Modules\Numerology\Services\PythagoreanGridCalculator;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\DB;
 

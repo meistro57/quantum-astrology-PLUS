@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use App\Services\NumerologyCalculator;
-use App\Services\PersonalCyclesCalculator;
-use App\Services\PythagoreanGridCalculator;
+use App\Modules\Numerology\Services\NumerologyCalculator;
+use App\Modules\Numerology\Services\PersonalCyclesCalculator;
+use App\Modules\Numerology\Services\PythagoreanGridCalculator;
 use Illuminate\Support\ServiceProvider;
 
 final class NumerologyServiceProvider extends ServiceProvider

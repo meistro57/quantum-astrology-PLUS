@@ -2,12 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Modules\Numerology\Services;
 
+use App\Modules\Numerology\Support\NumberReducer;
 use Carbon\CarbonImmutable;
 
 final class PersonalCyclesCalculator
 {
+    private NumberReducer $reducer;
+
+    public function __construct(?NumberReducer $reducer = null)
+    {
+        $this->reducer = $reducer ?? new NumberReducer();
+    }
+
     /**
      * Calculate Personal Year Number
      */
@@ -21,7 +29,7 @@ final class PersonalCyclesCalculator
 
         $personalYear = $birthMonth + $birthDay + $targetYear;
         
-        return $this->reduceToSingleDigit($personalYear);
+        return $this->reducer->reduce($personalYear);
     }
 
     /**
@@ -36,7 +44,7 @@ final class PersonalCyclesCalculator
 
         $personalMonth = $personalYear + $targetMonth;
         
-        return $this->reduceToSingleDigit($personalMonth);
+        return $this->reducer->reduce($personalMonth);
     }
 
     /**
@@ -51,19 +59,7 @@ final class PersonalCyclesCalculator
 
         $personalDay = $personalMonth + $targetDay;
         
-        return $this->reduceToSingleDigit($personalDay);
-    }
-
-    /**
-     * Reduce number to single digit, preserving master numbers
-     */
-    private function reduceToSingleDigit(int $number): int
-    {
-        while ($number > 9 && $number !== 11 && $number !== 22 && $number !== 33) {
-            $number = array_sum(str_split((string)$number));
-        }
-        
-        return $number;
+        return $this->reducer->reduce($personalDay);
     }
 
     /**

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Services\NumerologyCalculator;
-use App\Services\PersonalCyclesCalculator;
+use App\Modules\Numerology\Services\NumerologyCalculator;
+use App\Modules\Numerology\Services\PersonalCyclesCalculator;
 use Carbon\CarbonImmutable;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Helper\ProgressBar;

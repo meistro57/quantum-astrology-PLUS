@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DTOs\Numerology;
+namespace App\Modules\Numerology\DTOs;
 
 use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Attributes\Validation\Date;

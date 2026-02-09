@@ -2,13 +2,21 @@
 
 declare(strict_types=1);
 
-namespace App\Services;
+namespace App\Modules\Numerology\Services;
 
+use App\Modules\Numerology\Support\NumberReducer;
 use Carbon\CarbonImmutable;
 use Exception;
 
 final class NumerologyCalculator
 {
+    private NumberReducer $reducer;
+
+    public function __construct(?NumberReducer $reducer = null)
+    {
+        $this->reducer = $reducer ?? new NumberReducer();
+    }
+
     /**
      * Calculate Life Path Number from birthdate
      * 
@@ -20,11 +28,8 @@ final class NumerologyCalculator
         $digits = preg_replace('/[^0-9]/', '', $dateString);
         
         $sum = array_sum(str_split($digits));
-        while ($sum > 9 && $sum !== 11 && $sum !== 22 && $sum !== 33) {
-            $sum = array_sum(str_split((string)$sum));
-        }
-        
-        return $sum;
+
+        return $this->reducer->reduce($sum);
     }
 
     /**
@@ -48,11 +53,7 @@ final class NumerologyCalculator
             $sum += $pythagoreanValues[$letter] ?? 0;
         }
         
-        while ($sum > 9 && $sum !== 11 && $sum !== 22 && $sum !== 33) {
-            $sum = array_sum(str_split((string)$sum));
-        }
-        
-        return $sum;
+        return $this->reducer->reduce($sum);
     }
 
     /**
@@ -74,11 +75,7 @@ final class NumerologyCalculator
             }
         }
         
-        while ($sum > 9 && $sum !== 11 && $sum !== 22 && $sum !== 33) {
-            $sum = array_sum(str_split((string)$sum));
-        }
-        
-        return $sum;
+        return $this->reducer->reduce($sum);
     }
 
     /**
@@ -103,11 +100,7 @@ final class NumerologyCalculator
             }
         }
         
-        while ($sum > 9 && $sum !== 11 && $sum !== 22 && $sum !== 33) {
-            $sum = array_sum(str_split((string)$sum));
-        }
-        
-        return $sum;
+        return $this->reducer->reduce($sum);
     }
 
     /**
@@ -117,11 +110,7 @@ final class NumerologyCalculator
     {
         $day = (int)$birthDate->format('d');
         
-        while ($day > 9 && $day !== 11 && $day !== 22 && $day !== 33) {
-            $day = array_sum(str_split((string)$day));
-        }
-        
-        return $day;
+        return $this->reducer->reduce($day);
     }
 
     /**
@@ -129,7 +118,7 @@ final class NumerologyCalculator
      */
     public function isMasterNumber(int $number): bool
     {
-        return in_array($number, [11, 22, 33]);
+        return $this->reducer->isMasterNumber($number);
     }
 
     /**
@@ -152,9 +141,7 @@ final class NumerologyCalculator
         
         // Reduce each pinnacle
         foreach ($pinnacles as &$pinnacle) {
-            while ($pinnacle > 9 && $pinnacle !== 11 && $pinnacle !== 22 && $pinnacle !== 33) {
-                $pinnacle = array_sum(str_split((string)$pinnacle));
-            }
+            $pinnacle = $this->reducer->reduce($pinnacle);
         }
         
         return $pinnacles;

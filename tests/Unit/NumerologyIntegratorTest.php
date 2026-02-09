@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Unit;
 
-use App\Services\NumerologyCalculator;
-use App\Services\PersonalCyclesCalculator;
-use App\Support\ModuleIntegration\NumerologyIntegrator;
+use App\Modules\Numerology\Services\NumerologyCalculator;
+use App\Modules\Numerology\Services\PersonalCyclesCalculator;
+use App\Modules\Numerology\Support\ModuleIntegration\NumerologyIntegrator;
 use Carbon\CarbonImmutable;
 use PHPUnit\Framework\TestCase;
 
@@ -49,11 +49,13 @@ final class NumerologyIntegratorTest extends TestCase
         $this->assertNotNull($numerologyProfile);
         $this->assertEquals('John Doe', $numerologyProfile->fullName);
         $this->assertEquals($birthDate, $numerologyProfile->birthDate);
-        
-        // Verify core numbers are calculated
-        $this->assertIsInt($numerologyProfile->lifePath);
-        $this->assertIsInt($numerologyProfile->expression);
-        $this->assertIsInt($numerologyProfile->heartsDesire);
+        $this->assertSame(4, $numerologyProfile->lifePath);
+        $this->assertSame(8, $numerologyProfile->expression);
+        $this->assertSame(8, $numerologyProfile->heartsDesire);
+        $this->assertSame(9, $numerologyProfile->personality);
+        $this->assertSame(6, $numerologyProfile->birthday);
+        $this->assertSame(4, $numerologyProfile->firstPinnacle);
+        $this->assertFalse($numerologyProfile->hasMasterNumbers);
     }
 
     public function testPrepareCardSystemData(): void
@@ -79,6 +81,10 @@ final class NumerologyIntegratorTest extends TestCase
         $this->assertArrayHasKey('birth_card', $cardData);
         $this->assertArrayHasKey('expression_card', $cardData);
         $this->assertArrayHasKey('has_master_numbers', $cardData);
+        $this->assertSame(4, $cardData['birth_number']);
+        $this->assertSame('Emperor', $cardData['birth_card']);
+        $this->assertSame('Strength', $cardData['expression_card']);
+        $this->assertFalse($cardData['has_master_numbers']);
     }
 
     public function testPlanetaryInfluenceOnPinnacles(): void
@@ -98,6 +104,6 @@ final class NumerologyIntegratorTest extends TestCase
             $astrologyChartData
         );
 
-        $this->assertNotNull($numerologyProfile->firstPinnacle);
+        $this->assertSame(6, $numerologyProfile->firstPinnacle);
     }
 }

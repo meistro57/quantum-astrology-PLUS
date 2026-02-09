@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\DTOs\Numerology\NumerologyProfileData;
+use App\Modules\Numerology\DTOs\NumerologyProfileData;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 

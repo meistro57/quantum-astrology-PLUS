@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Resources;
+namespace App\Modules\Numerology\Http\Resources;
 
-use App\DTOs\Numerology\NumerologyProfileData;
+use App\Modules\Numerology\DTOs\NumerologyProfileData;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 final class NumerologyProfileResource extends JsonResource

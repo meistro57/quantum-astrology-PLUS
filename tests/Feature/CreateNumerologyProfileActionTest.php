@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
-use App\Actions\Numerology\CreateNumerologyProfileAction;
 use App\Models\User;
-use App\Services\NumerologyCalculator;
-use App\Services\PythagoreanGridCalculator;
+use App\Modules\Numerology\Actions\CreateNumerologyProfileAction;
+use App\Modules\Numerology\Services\NumerologyCalculator;
+use App\Modules\Numerology\Services\PythagoreanGridCalculator;
 use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;

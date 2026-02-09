@@ -417,7 +417,7 @@ composer test:types     # PHPStan analysis
 | `config/cards.php` | Suit meanings, planetary periods |
 | `app/Enums/*.php` | Type-safe constants |
 | `app/Services/SwissEphemerisService.php` | Ephemeris calculations |
-| `app/Services/NumerologyCalculator.php` | Number calculations |
+| `app/Modules/Numerology/Services/NumerologyCalculator.php` | Number calculations |
 | `app/Services/CardSpreadEngine.php` | Card calculations |
 | `docs/architecture.docx` | Full technical specification |
 
