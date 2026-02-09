@@ -196,6 +196,12 @@ Based on the Book of Destiny / Cards of Illumination system:
 
 ---
 
+## 🧭 Roadmap
+
+- **Lunar Flow Tracking (Temporal Rhythm Calibration)**: Quiet background logging of timestamp + lunar phase (optionally sign/aspects) + inferred emotional/energetic tone, with a monthly reflection ritual that mirrors patterns (no predictions). Designed for local/MCP-friendly storage and comparative lunar framings (tropical vs sidereal, Western vs Vedic).
+
+---
+
 ## 📚 Available Commands
 
 ### Development
