@@ -198,7 +198,28 @@ Based on the Book of Destiny / Cards of Illumination system:
 
 ## 🧭 Roadmap
 
-- **Lunar Flow Tracking (Temporal Rhythm Calibration)**: Quiet background logging of timestamp + lunar phase (optionally sign/aspects) + inferred emotional/energetic tone, with a monthly reflection ritual that mirrors patterns (no predictions). Designed for local/MCP-friendly storage and comparative lunar framings (tropical vs sidereal, Western vs Vedic).
+### Phase 1: Core Platform Hardening
+- Stabilize calculation services and DTOs across Astrology, Numerology, and Cards
+- Normalize shared data contracts for charts, grids, and spreads
+- Add deterministic test vectors for ephemeris, aspects, and numerology reducers
+- Introduce caching and performance baselines for heavy calculations
+
+### Phase 2: User Experience & Persistence
+- User profiles with saved charts, grids, and spreads
+- Timeline/history views for recalculations and edits
+- Exportable reports (PDF/JSON) with consistent schemas
+- Configurable chart styles and shareable links
+
+### Phase 3: Insight Layers
+- Cross-module synthesis: astrology + numerology + cards overlays
+- Comparative systems (tropical vs sidereal, Western vs Vedic) with side-by-side outputs
+- Narrative summaries with explainable source data
+- Advanced cycle analysis and seasonal insights
+
+### Phase 4: Lunar Flow Tracking (Temporal Rhythm Calibration)
+- Background logging of timestamp + lunar phase (optionally sign/aspects) + inferred emotional/energetic tone
+- Monthly reflection ritual that mirrors patterns (no predictions)
+- Local/MCP-friendly storage adapters and privacy-first defaults
 
 ---
 
