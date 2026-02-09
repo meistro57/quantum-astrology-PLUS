@@ -8,6 +8,7 @@ use App\Models\NumerologyProfile;
 use App\Models\User;
 use Carbon\CarbonImmutable;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 final class NumerologyProfileApiTest extends TestCase
@@ -21,7 +22,7 @@ final class NumerologyProfileApiTest extends TestCase
     {
         parent::setUp();
         $this->user = User::factory()->create();
-        $this->actingAs($this->user);
+        Sanctum::actingAs($this->user);
     }
 
     public function testCreateNumerologyProfile(): void

@@ -11,6 +11,7 @@ return [
     | Path to the swetest binary and ephemeris data files.
     |
     */
+    'ephemeris_driver' => env('ASTROLOGY_EPHEMERIS_DRIVER', 'swetest'),
     'swetest_path' => env('SWETEST_PATH', '/usr/local/bin/swetest'),
     'ephemeris_path' => env('EPHEMERIS_PATH', storage_path('app/ephemeris')),
 

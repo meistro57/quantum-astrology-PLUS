@@ -7,8 +7,9 @@ namespace Tests\Unit;
 use App\Enums\Planet;
 use App\Enums\ZodiacSign;
 use App\Modules\Astrology\Services\AstrologyCalculator;
+use App\Modules\Astrology\Services\DeterministicEphemeris;
 use Carbon\CarbonImmutable;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 final class AstrologyCalculatorTest extends TestCase
 {
@@ -17,7 +18,7 @@ final class AstrologyCalculatorTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->calculator = new AstrologyCalculator();
+        $this->calculator = new AstrologyCalculator(new DeterministicEphemeris());
     }
 
     public function testCalculateNatalChartUsesDeterministicVectors(): void
